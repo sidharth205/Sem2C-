@@ -1,0 +1,77 @@
+#include<iostream>
+using namespace std;
+
+static int c = 0;
+
+class num {
+    int n = 0;
+    float SI = 0.0;
+
+public:
+    num() {
+        c++;
+    }
+
+    void displayCount() {
+        cout << "Number of objects created: " << c << endl;
+    }
+
+    num(int input) {
+        n = input * input;
+    }
+
+    void display() {
+        cout << "Square of input: " << n << endl;
+    }
+
+    num(int p, int t, int r = 15) {
+        SI = (float)((p * r * t) / 100);
+    }
+
+    void displaySI() {
+        cout << "Simple Interest: " << SI << endl;
+    }
+
+    num(const num &a) {
+        n = a.n;
+        cout << "Copied!" << endl;
+    }
+
+    void displayCopy() {
+        cout << "Copied object value: " << n << endl;
+    }
+
+    ~num() {
+        c--;
+    }
+};
+
+int main() {
+
+    cout << "1: Using Default Constructor" << endl;
+    num c1;
+    c1.displayCount();
+
+   
+    cout << "\n2: Using Parameterized Constructor (Square of a number)" << endl;
+    num c2(7);
+    c2.display();
+
+    cout << "\n3: Using Constructor with Default Arguments (Simple Interest)" << endl;
+    int p, t;
+    cout << "Enter principal amount: ";
+    cin >> p;
+    cout << "Enter time period: ";
+    cin >> t;
+    num c3(p, t);
+    c3.displaySI();
+
+    cout << "\n4: Using Copy Constructor" << endl;
+    num c4(10);
+    num c5 = c4; 
+    c5.displayCopy();
+
+    cout << "\n5: Destructor will be called automatically when objects go out of scope." << endl;
+
+    return 0;
+}
